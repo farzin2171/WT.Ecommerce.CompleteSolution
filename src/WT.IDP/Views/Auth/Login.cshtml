@@ -1,0 +1,21 @@
+﻿@model LoginViewModel
+
+<form action="/Auth/Login" method="post">
+    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+    <div>
+        <label>UserName</label>
+        <input type="text" name="userName" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="text" name="password" />
+    </div>
+    <div>
+        <button type="submit">Sign In</button>
+    </div>
+
+</form>
+<hr />
+<div>
+    @Html.ActionLink("Register", "Register", "Auth", new { ReturnUrl = Model.ReturnUrl })
+</div>

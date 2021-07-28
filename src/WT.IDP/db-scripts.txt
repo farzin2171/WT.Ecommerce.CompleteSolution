@@ -1,0 +1,19 @@
+﻿dotnet ef migrations add InitialIdentityServerPersistedGrantDbMigration -c PersistedGrantDbContext -o Data/Migrations/IdentityServer/PersistedGrantDb
+dotnet ef migrations add InitialIdentityServerConfigurationDbMigration -c ConfigurationDbContext -o Data/Migrations/IdentityServer/ConfigurationDb
+dotnet ef migrations add Initial -c AppDbContext -o Data/Migrations/AppMigrations
+
+dotnet ef database update -c PersistedGrantDbContext
+dotnet ef database update -c ConfigurationDbContext
+
+dotnet ef database update -c AppDbContext
+
+
+https://docs.microsoft.com/en-us/archive/blogs/kaevans/using-powershell-with-certificates
+ $cert = New-SelfSignedCertificate -Subject "CN=IndentityServerSample" -CertStoreLocation cert:\CurrentUser\My -Provider "Microsoft Strong Cryptographic Provider"
+
+ //Command to get my certificates
+ Get-ChildItem -Path cert:\CurrentUser\My
+
+ //export certificate to pfx file
+ $cred = Get-Credential
+ Export-PfxCertificate -Cert $cert -Password $cred.Password -FilePath "c:\temp\sample.pfx"

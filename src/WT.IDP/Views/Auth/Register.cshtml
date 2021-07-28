@@ -1,0 +1,16 @@
+﻿@model RegisterViewModel
+
+<form action="/Auth/Register" method="post">
+    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+    <div>
+        <label>UserName</label>
+        <input type="text" name="userName" />
+    </div>
+    <div>
+        <label>Password</label>
+        <input type="text" name="password" />
+    </div>
+    <div>
+        <button type="submit">Register</button>
+    </div>
+</form>
