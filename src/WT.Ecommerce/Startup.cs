@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +11,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WT.Ecommerce.Data;
+using WT.Ecommerce.Data.Repositories;
+using WT.Ecommerce.Data.Repositories.Interfaces;
+using WT.Ecommerce.Domain.Identity;
+using WT.Ecommerce.Services.Customer;
 
 namespace WT.Ecommerce
 {
@@ -24,6 +31,16 @@ namespace WT.Ecommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+               options.UseSqlServer(
+                   Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<ICustomerInformationRepository, CustomerInformationRepository>();
+            services.AddScoped<ICustomerInformationService, CustomerInformationService>();
+
+
+
             services.AddAuthentication(config =>
             {
                 config.DefaultScheme = "Cookie";
@@ -59,6 +76,8 @@ namespace WT.Ecommerce
 
               });
             services.AddHttpClient();
+            services.AddHttpContextAccessor();
+            services.AddTransient<IIdentityContext>(s => new IdentityContext(s.GetService<IHttpContextAccessor>().HttpContext?.User));
             services.AddControllersWithViews();
         }
 

@@ -9,7 +9,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using WT.Ecommerce.Domain.Identity;
 using WT.Ecommerce.Models;
+using WT.Ecommerce.Services.Customer;
 
 namespace WT.Ecommerce.Controllers
 {
@@ -17,11 +19,18 @@ namespace WT.Ecommerce.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IHttpClientFactory _httpClientFactory;
+        private IIdentityContext _identityContext;
+        private readonly ICustomerInformationService _customerInformationService;
 
-        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory)
+        public HomeController(ILogger<HomeController> logger,
+                              IHttpClientFactory httpClientFactory,
+                              IIdentityContext identityContext,
+                              ICustomerInformationService customerInformationService)
         {
             _logger = logger;
             _httpClientFactory = httpClientFactory;
+            _identityContext = identityContext;
+            _customerInformationService = customerInformationService;
         }
 
         public IActionResult Index()
@@ -39,7 +48,20 @@ namespace WT.Ecommerce.Controllers
             var claims = User.Claims.ToList();
             var _accessToken = new JwtSecurityTokenHandler().ReadJwtToken(accessToken);
             var _idToken = new JwtSecurityTokenHandler().ReadJwtToken(idToken);
-            
+
+            var x = _identityContext.UserCode;
+
+            var customer = await _customerInformationService.CreateCustomerAsync(new Domain.Models.CustomerInformation
+            {
+                FirstName="farzin",
+                LastName="fa",
+                PhoneNumber="5145550"
+                
+            });
+
+
+
+
 
             return View();
         }

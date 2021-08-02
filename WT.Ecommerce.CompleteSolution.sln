@@ -3,13 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT.IDP", "src\WT.IDP\WT.IDP.csproj", "{F37ECED2-37AE-42CB-B17B-49985254A708}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WT.IDP", "src\WT.IDP\WT.IDP.csproj", "{F37ECED2-37AE-42CB-B17B-49985254A708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT.Ecommerce", "src\WT.Ecommerce\WT.Ecommerce.csproj", "{FF9AF959-BE44-4224-A304-00B7C8A760B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WT.Ecommerce", "src\WT.Ecommerce\WT.Ecommerce.csproj", "{FF9AF959-BE44-4224-A304-00B7C8A760B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT.Ecommerce.WebAPI", "src\WT.Ecommerce.WebAPI\WT.Ecommerce.WebAPI.csproj", "{E55885D3-B5FA-467A-B5CB-1E012FFEBDF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WT.Ecommerce.WebAPI", "src\WT.Ecommerce.WebAPI\WT.Ecommerce.WebAPI.csproj", "{E55885D3-B5FA-467A-B5CB-1E012FFEBDF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT.Ecommerce.ClientJs", "src\WT.Ecommerce.ClientJs\WT.Ecommerce.ClientJs.csproj", "{405E9DEC-DE04-42FC-B4D3-541B9A86DD79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WT.Ecommerce.ClientJs", "src\WT.Ecommerce.ClientJs\WT.Ecommerce.ClientJs.csproj", "{405E9DEC-DE04-42FC-B4D3-541B9A86DD79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WT.Ecommerce.Domain", "src\WT.Ecommerce.Domain\WT.Ecommerce.Domain.csproj", "{72F77615-81FE-4579-A9CC-D2792799C0B2}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WT.Ecommerce.Database", "src\WT.Ecommerce.Database\WT.Ecommerce.Database.sqlproj", "{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT.Ecommerce.Data", "src\WT.Ecommerce.Data\WT.Ecommerce.Data.csproj", "{710B00E5-E52D-48D5-BDC2-B5866A917023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WT.Ecommerce.Services", "src\WT.Ecommerce.Services\WT.Ecommerce.Services.csproj", "{CBD9833D-A046-432F-A5C6-F485328EAF89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +41,24 @@ Global
 		{405E9DEC-DE04-42FC-B4D3-541B9A86DD79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{405E9DEC-DE04-42FC-B4D3-541B9A86DD79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{405E9DEC-DE04-42FC-B4D3-541B9A86DD79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F77615-81FE-4579-A9CC-D2792799C0B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F77615-81FE-4579-A9CC-D2792799C0B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F77615-81FE-4579-A9CC-D2792799C0B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F77615-81FE-4579-A9CC-D2792799C0B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{708E4C7A-4CF9-43A4-82FC-1CD4D7D49C17}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{710B00E5-E52D-48D5-BDC2-B5866A917023}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{710B00E5-E52D-48D5-BDC2-B5866A917023}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{710B00E5-E52D-48D5-BDC2-B5866A917023}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{710B00E5-E52D-48D5-BDC2-B5866A917023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBD9833D-A046-432F-A5C6-F485328EAF89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBD9833D-A046-432F-A5C6-F485328EAF89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBD9833D-A046-432F-A5C6-F485328EAF89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBD9833D-A046-432F-A5C6-F485328EAF89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
