@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ using WT.Ecommerce.Data;
 using WT.Ecommerce.Data.Repositories;
 using WT.Ecommerce.Data.Repositories.Interfaces;
 using WT.Ecommerce.Domain.Identity;
+using WT.Ecommerce.Infrastructure.Extentions;
 using WT.Ecommerce.Services.Customer;
 
 namespace WT.Ecommerce
@@ -31,54 +33,7 @@ namespace WT.Ecommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddDbContext<ApplicationDbContext>(options =>
-               options.UseSqlServer(
-                   Configuration.GetConnectionString("DefaultConnection")));
-
-            services.AddScoped<ICustomerInformationRepository, CustomerInformationRepository>();
-            services.AddScoped<ICustomerInformationService, CustomerInformationService>();
-
-
-
-            services.AddAuthentication(config =>
-            {
-                config.DefaultScheme = "Cookie";
-                config.DefaultChallengeScheme = "oidc";
-
-            })
-              .AddCookie("Cookie")
-              .AddOpenIdConnect("oidc", config =>
-              {
-                  config.Authority = "https://localhost:44361/";
-                  config.ClientId = "WTEcommerce_id_mvc";
-                  config.ClientSecret = "clinet_secret_mvc_123";
-                  config.SaveTokens = true;
-                  config.UsePkce = true;
-                  config.ResponseType = "code";
-
-                  config.SignedOutCallbackPath = "/Home/Index";
-                    //configure cookie claim mapping
-                    config.ClaimActions.DeleteClaim("amr");
-                  config.ClaimActions.DeleteClaim("s_hash");
-                  config.ClaimActions.MapUniqueJsonKey("wt.AppUserType", "wt.UserType");
-                    //two trips to load claims in the cookie
-                    //but the id is smaller
-                    config.GetClaimsFromUserInfoEndpoint = true;
-
-                    //configure scope
-                    config.Scope.Clear();
-                  config.Scope.Add("openid");
-                  config.Scope.Add("wt.scope");
-                  config.Scope.Add("WT.Ecommerce.WebAPI");
-                  config.Scope.Add("offline_access");
-
-
-              });
-            services.AddHttpClient();
-            services.AddHttpContextAccessor();
-            services.AddTransient<IIdentityContext>(s => new IdentityContext(s.GetService<IHttpContextAccessor>().HttpContext?.User));
-            services.AddControllersWithViews();
+            services.InstallServicesInAssembly(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,11 +57,18 @@ namespace WT.Ecommerce
             app.UseAuthentication();
             app.UseAuthorization();
 
+            var swaggerOptions = new Infrastructure.Options.SwaggerOptions();
+            Configuration.GetSection(nameof(SwaggerOptions)).Bind(swaggerOptions);
+            app.UseSwagger(option => { option.RouteTemplate = swaggerOptions.JsonRoute; });
+            app.UseSwaggerUI(option =>
+            {
+                option.SwaggerEndpoint(swaggerOptions.UIEndpoint, swaggerOptions.Description);
+            });
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllers();
             });
         }
     }
