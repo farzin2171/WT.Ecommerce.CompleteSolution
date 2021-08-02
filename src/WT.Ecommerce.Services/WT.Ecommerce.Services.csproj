@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Threading" Version="16.10.56" />
+    <PackageReference Include="RedLock.net" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Librraries\WT.Libraries.Caching\WT.Libraries.Caching.csproj" />
     <ProjectReference Include="..\WT.Ecommerce.Data\WT.Ecommerce.Data.csproj" />
   </ItemGroup>
 
