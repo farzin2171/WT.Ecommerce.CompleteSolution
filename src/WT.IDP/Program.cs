@@ -26,6 +26,10 @@ namespace WT.IDP
                 var user = new IdentityUser("Admin");
                 userManager.CreateAsync(user, "password").GetAwaiter().GetResult();
                 userManager.AddClaimAsync(user, new Claim("wt.UserType", "Admin")).GetAwaiter().GetResult();
+                userManager.AddClaimAsync(user, new Claim(ClaimTypes.Name, "Admin")).GetAwaiter().GetResult();
+                userManager.AddClaimAsync(user, new Claim(ClaimTypes.Surname, "Admin")).GetAwaiter().GetResult();
+
+
             }
 
             host.Run();

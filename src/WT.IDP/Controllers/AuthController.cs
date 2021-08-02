@@ -44,7 +44,7 @@ namespace WT.IDP.Controllers
         public async Task<IActionResult> Login(LoginViewModel vm)
         {
             // chechk if the model is valid
-            var user = await _userManager.FindByNameAsync(vm.UserName);
+            var user = await _userManager.FindByEmailAsync(vm.Email);
             var result = await _signInManager.PasswordSignInAsync(user, vm.Password, false, false);
             if (result.Succeeded)
             {
@@ -61,17 +61,20 @@ namespace WT.IDP.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel vm)
         {
-            // chechk if the model is valid
-
-            var user = new IdentityUser(vm.UserName);
-            var result = await _userManager.CreateAsync(user, vm.Password);
-
-            if (result.Succeeded)
+            
+            if (ModelState.IsValid)
             {
-                await _signInManager.SignInAsync(user, false);
-                return Redirect(vm.ReturnUrl);
+                var user = new IdentityUser(vm.Email);
+                user.Email = vm.Email;
+                var result = await _userManager.CreateAsync(user, vm.Password);
+
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, false);
+                    return Redirect(vm.ReturnUrl);
+                }
             }
-            return View();
+            return View(vm);
         }
     }
 }
