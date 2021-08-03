@@ -18,7 +18,7 @@ namespace WT.Ecommerce.Infrastructure.Installers
               .AddCookie("Cookie")
               .AddOpenIdConnect("oidc", config =>
               {
-                  config.Authority = "https://localhost:44361/";
+                  config.Authority = "https://localhost:6001/";
                   config.ClientId = "WTEcommerce_id_mvc";
                   config.ClientSecret = "clinet_secret_mvc_123";
                   config.SaveTokens = true;

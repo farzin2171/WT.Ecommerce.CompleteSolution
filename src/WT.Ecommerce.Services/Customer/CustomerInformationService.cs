@@ -27,7 +27,7 @@ namespace WT.Ecommerce.Services.Customer
         {
             customerInformation.UserCode = _identityContext.UserCode;
 
-            var x = await _redisCache.GetOrAddAsync("TestCashe", () => _customerInformationRepository.GetByIdAsync(new System.Guid("F1766AFD-FC35-470A-91CE-08D955B66526")));
+            //var x = await _redisCache.GetOrAddAsync("TestCashe", () => _customerInformationRepository.GetByIdAsync(new System.Guid("F1766AFD-FC35-470A-91CE-08D955B66526")));
             
             return await _customerInformationRepository.AddAsync(customerInformation);
         }
