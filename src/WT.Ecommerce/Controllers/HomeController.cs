@@ -22,6 +22,7 @@ namespace WT.Ecommerce.Controllers
         private IIdentityContext _identityContext;
         private readonly ICustomerInformationService _customerInformationService;
 
+
         public HomeController(ILogger<HomeController> logger,
                               IHttpClientFactory httpClientFactory,
                               IIdentityContext identityContext,
@@ -50,7 +51,7 @@ namespace WT.Ecommerce.Controllers
             var _idToken = new JwtSecurityTokenHandler().ReadJwtToken(idToken);
 
             var x = _identityContext.UserCode;
-
+            _logger.LogInformation("Identity user code {userId}",x);
             var customer = await _customerInformationService.CreateCustomerAsync(new Domain.Models.CustomerInformation
             {
                 FirstName="farzin",
