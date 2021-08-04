@@ -1,23 +1,10 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using WT.Ecommerce.Data;
-using WT.Ecommerce.Data.Repositories;
-using WT.Ecommerce.Data.Repositories.Interfaces;
-using WT.Ecommerce.Domain.Identity;
 using WT.Ecommerce.Infrastructure.Extentions;
-using WT.Ecommerce.Services.Customer;
 
 namespace WT.Ecommerce
 {
