@@ -17,7 +17,9 @@
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.0" />
     <PackageReference Include="IdentityModel" Version="5.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.8" />
+    <PackageReference Include="Morcatko.AspNetCore.JsonMergePatch.Document" Version="3.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.5" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
   </ItemGroup>
@@ -25,10 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Librraries\WT.Libraries.Logging\WT.Libraries.Logging.csproj" />
     <ProjectReference Include="..\WT.Ecommerce.Services\WT.Ecommerce.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\Api\V1\" />
   </ItemGroup>
 
 </Project>

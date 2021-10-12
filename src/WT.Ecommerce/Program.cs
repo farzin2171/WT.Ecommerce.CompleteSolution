@@ -6,23 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WT.Ecommerce.Infrastructure.Extentions;
 using WT.Libraries.Logging;
 
 namespace WT.Ecommerce
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+        public static void Main(string[] args) => BuildWebHost(args).RunTasks().Run();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHost BuildWebHost(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .UseLogging()
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).Build();
     }
 }
