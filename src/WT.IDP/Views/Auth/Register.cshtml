@@ -1,0 +1,40 @@
+﻿@model RegisterViewModel
+
+<div id="content" class="flex">
+    <div class="">
+        <div class="page-content page-container" id="page-content">
+            <div class="padding">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header"><strong>Register your account</strong></div>
+                            <div class="card-body">
+                                <form action="/Auth/Register" method="post">
+                                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                                    <div class="form-group">
+                                        <label class="text-muted" for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" name="Email">
+                                        <small id="emailHelp" class="form-text text-muted">We don't share email with anyone</small>
+                                        <span asp-validation-for="Email"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-muted" for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" name="password">
+                                        <small id="passwordHelp" class="form-text text-muted">your password is saved in encrypted form</small>
+                                        <span asp-validation-for="Password"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="text-muted" for="exampleInputPassword1">Confirm Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="ConfirmPassword" name="confirmPassword">
+                                        <span asp-validation-for="ConfirmPassword"></span>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
